@@ -5,14 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
+  declarations: [ // всі компоненти які модуль використовує
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, // всі ліби, BrowModule (if, else, switch і тп)
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [], // service - Для роботи з бекендом
+  bootstrap: [AppComponent] // що ми в першу чергу запускаєм
 })
 export class AppModule { }
