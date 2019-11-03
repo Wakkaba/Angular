@@ -1,0 +1,13 @@
+.own-hide {
+    display: block;
+}
+.own-show {
+    display: none;
+}
+ /* .blockedHouse {
+    border :2px solid red
+ }
+ .availableHouse{
+    border :2px solid green
+}  */
+/* "{'border': house.owner && user.is_blocked > 2 ? '2px solid green' : '2px solid red'}" */

@@ -1,37 +1,145 @@
-<input type="text" #result>
+<!-- <input type="text" #result>
 <button (click)="showSearchResult(result.value)">Search</button>
 
 <br> 
 
-{{inputedSearchResult}}
+{{inputedSearchResult}} -->
 
 <br>
-<button (click)="registerUser()">Register</button>
-<button (click)="loginUser()">Login</button>
+<button (click)="registerUser()">Register Form</button>
+<button (click)="loginUserForm()">Login Form</button>
+<button (click)="newHouse()">House register Form</button>
 
-<form *ngIf="statusLogin">
-    <input type="email" name="email" placeholder="email@mail.com" >
+<!-- LOGIN -->
+
+<form *ngIf="statusLogin"
+(ngSubmit)="loginUser()"
+#Logerino="ngForm">
+   <label [ngStyle] = "{color: emailLogEr.invalid && emailLogEr.touched ? 'red' : 'black'}">
+       Email:</label> 
+   <input type="email" name="email" placeholder="email@mail.com" 
+   [(ngModel)] = "authUser.email"
+   #emailLogEr="ngModel"
+   email
+   required>
+   <br>
+   <label [ngStyle]="{color: passLogEr.invalid && passLogEr.touched ? 'red' : 'black'}">
+       Password: </label>
+   <input type="password" name="password" placeholder="********" 
+   [(ngModel)] = "authUser.password"
+   #passLogEr="ngModel"
+   minlength="8"
+   required>
+   <br>
+   <button [disabled]="Logerino.invalid">Login me</button>
+   <hr>
+   <div>{{logMessage}}</div>
+</form>
+
+<br>
+<!-- REGISTER USER -->
+<form 
+*ngIf="statusRegister"
+(ngSubmit)="createNewUser()" #createNewUserino="ngForm">
+  <label [ngStyle] = "{color: nameRegEr.invalid && nameRegEr.touched ? 'red' : 'black'}">
+      Your name: </label> 
+  <input type="text" name="name" placeholder="name" 
+  [(ngModel)] = "addUser.name" 
+  #nameRegEr="ngModel"
+  minlength="2"
+  required>
+   <br>
+   <label [ngStyle] = "{color: mailRegEr.invalid && mailRegEr.touched ? 'red' : 'black'}">
+       Email:</label> 
+   <input type="email" name="email" placeholder="email@mail.com" 
+   [(ngModel)] = "addUser.email" 
+   #mailRegEr="ngModel"
+   email
+   required>
+   <br>
+   <label [ngStyle] = "{color: passRegEr.invalid && passRegEr.touched ? 'red' : 'black'}">
+       Password:</label>  
+   <input type="password" name="password" placeholder="********" 
+   [(ngModel)] = "addUser.password"
+   #passRegEr="ngModel"
+   minlength="8"
+   required>
+   <br>
+   <hr>
+   <button [disabled]="createNewUserino.invalid">Register me</button>
+</form>
+
+<!-- HOUSE REGISTER -->
+<form *ngIf="houseRegister" 
+#createNewHouserino="ngForm"
+(ngSubmit)="createNewHouse()">
+    <label [ngStyle]="{color: houseCityEr.invalid && houseCityEr.touched ? 'red' : 'black'}">
+        City:</label> 
+    <input type="text" name="houseCity" placeholder="city name" 
+    [(ngModel)] = "addHouse.city"
+    #houseCityEr="ngModel"
+    required>
     <br>
-    <input type="password" name="password">
-  </form>
-
-
-
-<form *ngIf="statusRegister" >
-    <input type="text" name="login" placeholder="login" >
+    <label [ngStyle]="{color: houseStreetEr.invalid && houseStreetEr.touched ? 'red' : 'black'}">
+        Street:</label>
+    <input type="text" name="houseStreet" placeholder="street name"  
+    [(ngModel)] = "addHouse.street"
+    #houseStreetEr="ngModel"
+    required>
     <br>
-    <input type="email" name="email" placeholder="email@mail.com"  >
+    <label [ngStyle]="{color: houseRoomEr.invalid && houseRoomEr.touched ? 'red' : 'black'}">
+        Rooms:</label>
+    <input type="number" name="rooms" placeholder="how many rooms" 
+    [(ngModel)] = "addHouse.rooms"
+    #houseRoomEr="ngModel" 
+    required>
     <br>
-    <input type="password" name="password" >
-  </form>
+    <!-- <label [ngStyle]="{color: houseOwnerEr.invalid && houseOwnerEr.touched ? 'red' : 'black'}">
+        House owner:</label>
+    <input type="text" name="houseOwner" placeholder="owners name"  
+    [(ngModel)] = "addHouse.owner"
+    #houseOwnerEr="ngModel"
+    required>
+    <br> -->
+    <button [disabled]="createNewHouserino.invalid">Register House</button>
+    <hr>
+</form>
   
   <br>
+  
+   <div
+   *ngFor="let house of houses"
+   [ngStyle] = "{'border': house.owner.is_blocked ? '5px solid green' : '5px solid red'}">
+    Houses
+    <br>  
+    City: {{house.city}}
+    <br>
+    Street: {{house.street}}
+    <br>
+    Rooms: {{house.rooms}}
+    <br>
+    <br>
+    <div 
+    *ngIf="ShowOneUserInfo === house.id"
+    [ngClass]="showInfoUsers ? 'own-hide' : 'own-show' ">
+    Owner: {{house.owner.name}}</div>
+    <button (click)="showInfo(house.id)">Show house owner</button>    
+    <hr>
+</div>
+    
+  <br>
+  <br>
+  <br>
+  <br>
 
-  <div *ngFor="let house of houses">
-      <br>  
-      City: {{house.city}}
-      <br>
-      Street: {{house.street}}
-      <br>
-      Rooms: {{house.rooms}}
-  </div>
+  <div *ngFor="let user of users">
+    <br>    
+    Name: {{user.name}}
+    <br>
+    Email: {{user.email}}
+    <br>
+    password: {{user.password}}
+    <br>
+    Block: {{user.is_blocked}}
+    <br>
+</div>
