@@ -1,0 +1,29 @@
+<form
+  (ngSubmit)="createNewUser()" #createNewUserino="ngForm">
+  <label [ngStyle] = "{color: nameRegEr.invalid && nameRegEr.touched ? 'red' : 'black'}">
+    Your name: </label>
+  <input type="text" name="name" placeholder="name"
+         [(ngModel)] = "addUser.name"
+         #nameRegEr="ngModel"
+         minlength="2"
+         required>
+  <br>
+  <label [ngStyle] = "{color: mailRegEr.invalid && mailRegEr.touched ? 'red' : 'black'}">
+    Email:</label>
+  <input type="email" name="email" placeholder="email@mail.com"
+         [(ngModel)] = "addUser.email"
+         #mailRegEr="ngModel"
+         email
+         required>
+  <br>
+  <label [ngStyle] = "{color: passRegEr.invalid && passRegEr.touched ? 'red' : 'black'}">
+    Password:</label>
+  <input type="password" name="password" placeholder="********"
+         [(ngModel)] = "addUser.password"
+         #passRegEr="ngModel"
+         minlength="8"
+         required>
+  <br>
+  <hr>
+  <button [disabled]="createNewUserino.invalid">Register me</button>
+</form>

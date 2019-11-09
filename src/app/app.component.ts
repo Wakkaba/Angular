@@ -13,11 +13,9 @@ export class AppComponent {
   statusRegister: boolean;
   houseRegister: boolean;
   // inputedSearchResult = '';
-  ShowOneUserInfo: number;
-  showInfoUsers: boolean;
+
   logMessage: string;
-   // blockedUsers: boolean;
-   // availableHouse: boolean;
+
 
   addUser: IuserModel = {
     name: '',
@@ -51,14 +49,14 @@ export class AppComponent {
       id: 1,
       city: 'Lviv',
       street: 'Franka str.',
-      rooms: 3,
+      price: 30000,
       owner: this.users[0]
     },
     {
       id: 2,
       city: 'Dnipro',
       street: 'Dnipryanska str.',
-      rooms: 2,
+      price: 40000,
       owner: this.users[1]
     }
   ];
@@ -67,7 +65,7 @@ export class AppComponent {
     id: 0,
     city: '',
     street: '',
-    rooms: 0,
+    price: undefined,
     owner: this.users[Math.floor(Math.random() * this.users.length)]
 
   };
@@ -87,21 +85,15 @@ export class AppComponent {
    newHouse() {
     this.houseRegister = !this.houseRegister;
    }
-   showInfo(id: number) {
-   this.showInfoUsers = !this.showInfoUsers;
-   // this.blockedUsers = !this.blockedUsers;
-   this.ShowOneUserInfo = id;
-  }
    createNewUser() {
      this.users.push(this.addUser);
    }
    loginUser() {
     const checkAuth = this.users.find(user => this.authUser.email === user.email &&
     this.authUser.password === user.password);
-    // tslint:disable-next-line:no-unused-expression
     checkAuth ?
     this.logMessage = 'Oh, it`s you again...Come in!' :
-    this.logMessage = 'Never seen you berfore, wanna register?';
+    this.logMessage = 'Never seen you before, wanna register?';
     console.log(this.logMessage);
   }
   createNewHouse() {

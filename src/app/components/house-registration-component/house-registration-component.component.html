@@ -1,0 +1,28 @@
+
+<form
+      #createNewHouserino="ngForm"
+      (ngSubmit)="createNewHouse()">
+  <label [ngStyle]="{color: houseCityEr.invalid && houseCityEr.touched ? 'red' : 'black'}">
+    City:</label>
+  <input type="text" name="houseCity" placeholder="city name"
+         [(ngModel)] = "addHouse.city"
+         #houseCityEr="ngModel"
+         required>
+  <br>
+  <label [ngStyle]="{color: houseStreetEr.invalid && houseStreetEr.touched ? 'red' : 'black'}">
+    Street:</label>
+  <input type="text" name="houseStreet" placeholder="street name"
+         [(ngModel)] = "addHouse.street"
+         #houseStreetEr="ngModel"
+         required>
+  <br>
+  <label [ngStyle]="{color: housePriceEr.invalid && housePriceEr.touched ? 'red' : 'black'}">
+    Price:  </label>
+  <input type="number" name="price" placeholder="UAH ₴"
+         [(ngModel)] = "addHouse.price"
+         #housePriceEr="ngModel"
+         required>
+  <br>
+  <button [disabled]="createNewHouserino.invalid">Register House</button>
+  <hr>
+</form>

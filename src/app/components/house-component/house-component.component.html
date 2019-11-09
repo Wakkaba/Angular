@@ -1,0 +1,19 @@
+
+<div
+[ngStyle] = "{'border': house.owner.is_blocked ? '5px solid green' : '5px solid red'}">
+Houses
+<br>
+City: {{house.city}}
+<br>
+Street: {{house.street}}
+<br>
+Price: {{house.price}} ₴ {{house.price | currencyConverter }}
+<br>
+<br>
+<div
+*ngIf="ShowOneUserInfo === house.id"
+[ngClass]="showInfoUsers ? 'own-hide' : 'own-show' ">
+Owner: {{house.owner.name}}</div>
+  <button (click)="showInfo(house.id)">Show house owner</button>
+<hr>
+</div>

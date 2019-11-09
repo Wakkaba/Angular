@@ -4,6 +4,6 @@ export  interface IhouseModel {
     id: number;
     city: string;
     street: string;
-    rooms: number;
+    price: number;
     owner: IuserModel;
 }

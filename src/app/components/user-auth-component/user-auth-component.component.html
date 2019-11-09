@@ -1,0 +1,23 @@
+<form
+      (ngSubmit)="loginUser()"
+      #Logerino="ngForm">
+  <label [ngStyle] = "{color: emailLogEr.invalid && emailLogEr.touched ? 'red' : 'black'}">
+    Email:</label>
+  <input type="email" name="email" placeholder="email@mail.com"
+         [(ngModel)] = "authUser.email"
+         #emailLogEr="ngModel"
+         email
+         required>
+  <br>
+  <label [ngStyle]="{color: passLogEr.invalid && passLogEr.touched ? 'red' : 'black'}">
+    Password: </label>
+  <input type="password" name="password" placeholder="********"
+         [(ngModel)] = "authUser.password"
+         #passLogEr="ngModel"
+         minlength="8"
+         required>
+  <br>
+  <button [disabled]="Logerino.invalid">Login me</button>
+  <hr>
+  <div>{{logMessage}}</div>
+</form>
